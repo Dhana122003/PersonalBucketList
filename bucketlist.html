@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bucket List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background-color: #e0e0e0;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+        button {
+            border: none;
+            padding: 5px 10px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        .add-button {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .remove-button {
+            background-color: #f44336;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>My Bucket List</h1>
+        <input type="text" id="itemInput" placeholder="Add a new item...">
+        <button class="add-button" onclick="addItem()">Add</button>
+        <ul id="bucketList"></ul>
+    </div>
+
+    <script>
+        function addItem() {
+            const itemInput = document.getElementById('itemInput');
+            const itemText = itemInput.value.trim();
+            if (itemText === '') {
+                alert('Please enter an item.');
+                return;
+            }
+
+            const itemList = document.getElementById('bucketList');
+            const listItem = document.createElement('li');
+            listItem.textContent = itemText;
+
+            const removeButton = document.createElement('button');
+            removeButton.textContent = 'Remove';
+            removeButton.classList.add('remove-button');
+            removeButton.onclick = function() {
+                itemList.removeChild(listItem);
+            };
+
+            listItem.appendChild(removeButton);
+            itemList.appendChild(listItem);
+
+            itemInput.value = '';
+        }
+    </script>
+</body>
+</html>
